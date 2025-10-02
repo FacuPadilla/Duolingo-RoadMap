@@ -1,8 +1,11 @@
-import RoadmapPage from "./pages/RoadmapPage";
-import { roadmapData } from "./data/roadmapData";
+import HeroSection from "./pages/HeroSection";
 
 function App() {
-  return <RoadmapPage data={roadmapData} />;
+  return (
+    <div className="min-h-screen">
+      <HeroSection />
+    </div>
+  );
 }
 
 export default App;

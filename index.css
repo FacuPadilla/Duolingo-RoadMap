@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
+/* Paleta y tipografía para Tailwind (v4) */
 @theme {
-  /* Paleta más suave y moderna inspirada en la referencia */
-  --color-primary-50: #f0f4ff;
-  --color-primary-100: #e0eaff;
-  --color-primary-200: #c7d7fe;
-  --color-primary-300: #a5b8fc;
-  --color-primary-400: #8b96f8;
-  --color-primary-500: #7b7ef1;
-  --color-primary-600: #6b63e5;
-  --color-primary-700: #5b50ca;
-  --color-primary-800: #4a41a3;
-  --color-primary-900: #3d3681;
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
 
-  --color-secondary-50: #f0f9ff;
-  --color-secondary-100: #e0f2fe;
-  --color-secondary-200: #bae6fd;
-  --color-secondary-300: #7dd3fc;
-  --color-secondary-400: #38bdf8;
-  --color-secondary-500: #0ea5e9;
-  --color-secondary-600: #0284c7;
-  --color-secondary-700: #0369a1;
-  --color-secondary-800: #075985;
-  --color-secondary-900: #0c4a6e;
+  --color-secondary-50: #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
 
   --color-accent-50: #faf5ff;
   --color-accent-100: #f3e8ff;
@@ -35,44 +35,33 @@
   --color-accent-800: #6b21a8;
   --color-accent-900: #581c87;
 
-  /* Colores para estados */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-info: #3b82f6;
+  --color-dark-50: #f8fafc;
+  --color-dark-100: #f1f5f9;
+  --color-dark-200: #e2e8f0;
+  --color-dark-300: #cbd5e1;
+  --color-dark-400: #94a3b8;
+  --color-dark-500: #64748b;
+  --color-dark-600: #475569;
+  --color-dark-700: #334155;
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
 
-  /* Fuente */
   --font-family-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Layout base limpio, sin duplicar el reset de Tailwind */
+html,
+body {
+  height: 100%;
+  overflow-x: hidden; /* mata cualquier scroll horizontal residual */
 }
 
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0a0e1a 0%, #0f1729 50%, #1a1f3a 100%);
   min-height: 100vh;
   font-family: var(--font-family-sans);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar personalizado */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
+/* El pseudo-elemento con gradientes fijos se elimina para evitar desbordes */
+/* También se elimina #root con z-index y la scrollbar personalizada porque no aporta a este Hero */
