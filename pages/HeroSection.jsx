@@ -4,7 +4,7 @@ import { ArrowRight, Star } from "lucide-react";
 const HeroSection = () => {
   return (
     <section className="relative overflow-x-hidden">
-      <div className="min-h-screen flex items-center px-6 sm:px-8 lg:px-12 py-10 sm:py-12">
+      <div className="min-h-screen flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-10 sm:py-12">
         <div className="container mx-auto max-w-7xl w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             {/* Imagen izquierda */}
@@ -14,16 +14,12 @@ const HeroSection = () => {
               transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
               className="flex justify-center"
             >
-              <div className="relative w-full max-w-[320px] sm:max-w-sm rounded-3xl overflow-hidden  shadow-lg">
+              <div className="relative w-full max-w-[320px] sm:max-w-sm rounded-3xl overflow-hidden shadow-lg">
                 <img
                   src="/Hero.png"
                   alt="Learning Roadmap"
                   className="w-full h-auto object-cover"
                 />
-                {/* Glow de fondo */}
-                {/* <div className="pointer-events-none absolute inset-0 rounded-3xl -z-10">
-                  <div className="w-[140%] h-[140%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 blur-3xl opacity-90"></div>
-                </div> */}
               </div>
             </motion.div>
 
@@ -41,8 +37,8 @@ const HeroSection = () => {
                 transition={{ delay: 0.2 }}
                 className="inline-flex w-fit items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-primary-500/10 border border-primary-500/30 rounded-full"
               >
-                <Star className="w-4 h-4 text-primary-400" />
-                <span className="text-primary-300 text-xs sm:text-sm font-medium">
+                <Star className="w-4 h-4 text-accent-400" />
+                <span className="text-white text-xs sm:text-sm font-medium">
                   Tu camino personalizado
                 </span>
               </motion.div>
@@ -81,7 +77,7 @@ const HeroSection = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-lg bg-primary-500/20 border border-primary-500/30 flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-primary-400" />
+                    <div className="w-2 h-2 rounded-full bg-accent-400" />
                   </div>
                   <span className="text-primary-200 text-sm sm:text-base leading-relaxed">
                     Progreso visual e interactivo
@@ -89,7 +85,7 @@ const HeroSection = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-lg bg-primary-500/20 border border-primary-500/30 flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-primary-400" />
+                    <div className="w-2 h-2 rounded-full bg-accent-400" />
                   </div>
                   <span className="text-primary-200 text-sm sm:text-base leading-relaxed">
                     Desafíos adaptados a tu nivel
@@ -97,7 +93,7 @@ const HeroSection = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-lg bg-primary-500/20 border border-primary-500/30 flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-primary-400" />
+                    <div className="w-2 h-2 rounded-full bg-accent-400" />
                   </div>
                   <span className="text-primary-200 text-sm sm:text-base leading-relaxed">
                     Seguimiento en tiempo real
@@ -120,6 +116,24 @@ const HeroSection = () => {
               </motion.button>
             </motion.div>
           </div>
+
+          {/* Texto inspirador abajo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.0, delay: 0.3 }}
+            className="mt-20 text-center flex flex-col items-center gap-4"
+          >
+            <Star className="w-10 h-10 text-accent-400 mb-2" />
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+              Da el primer paso hoy
+            </h2>
+            <p className="text-primary-200 text-base sm:text-lg max-w-xl">
+              El camino del aprendizaje nunca termina, pero cada línea de código
+              escrita te acerca más a tus sueños.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
