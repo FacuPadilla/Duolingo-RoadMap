@@ -130,7 +130,7 @@ export default function StepCSSAdvanced({ step, index }) {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="order-1 md:order-2"
+          className="order-2 md:order-2"
         >
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden  ">
             <Lottie
@@ -151,7 +151,7 @@ export default function StepCSSAdvanced({ step, index }) {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="order-2 md:order-1"
+          className="order-1 md:order-1"
         >
           {/* Meta header */}
           <div className="flex flex-wrap items-center gap-3">

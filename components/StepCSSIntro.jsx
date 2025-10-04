@@ -9,6 +9,7 @@ import {
   AlertCircle,
   PauseCircle,
   PlayCircle,
+  Star,
 } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -137,10 +138,13 @@ export default function StepCSSIntro({ step, index }) {
             </div>
 
             {/* Contenido: en mobile arriba, en desktop a la derecha */}
-            <div className="relative order-2 md:order-2 flex items-center">
+            <div className="relative order-1 md:order-2 flex items-center">
               <div className="px-6 sm:px-8 lg:px-12 py-14 sm:py-20 w-full">
                 <div className="flex flex-wrap items-center gap-3">
-                  <Pill>Step {index + 1}</Pill>
+                  <Pill>
+                    <Star className="w-4 h-4 text-accent-400" />
+                    Step {index + 1}
+                  </Pill>
                   <StatusPill status={status} />
                   <span className="text-xs text-white/70">
                     Progreso {progress}%
@@ -171,11 +175,11 @@ export default function StepCSSIntro({ step, index }) {
 
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <Pill>
-                    <BookOpenCheck className="w-4 h-4 text-primary-300" />
+                    <BookOpenCheck className="w-4 h-4 text-accent-400" />
                     Prerrequisito: Fundamentos de HTML
                   </Pill>
                   <Pill>
-                    <Timer className="w-4 h-4 text-secondary-300" />
+                    <Timer className="w-4 h-4 text-accent-400" />
                     Duración estimada: 6–8 h
                   </Pill>
                 </div>

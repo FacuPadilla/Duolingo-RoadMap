@@ -129,7 +129,7 @@ export default function StepHTML({ step, index }) {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="order-1 md:order-2"
+          className="order-2 md:order-2"
         >
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden  ">
             <Lottie
@@ -149,12 +149,12 @@ export default function StepHTML({ step, index }) {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="order-2 md:order-1"
+          className="order-1 md:order-1"
         >
           {/* Meta header */}
           <div className="flex flex-wrap items-center gap-3">
             <Pill>
-              <Star className="w-4 h-4 text-primary-300" />
+              <Star className="w-4 h-4 text-accent-400" />
               Step {index + 1}
             </Pill>
             <StatusPill status={status} />
@@ -186,11 +186,11 @@ export default function StepHTML({ step, index }) {
           {/* Prerrequisito + Duración (alineado a Step 2) */}
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <Pill>
-              <BookOpenCheck className="w-4 h-4 text-primary-300" />
+              <BookOpenCheck className="w-4 h-4 text-accent-400" />
               Prerrequisito: Ninguno
             </Pill>
             <Pill>
-              <Timer className="w-4 h-4 text-secondary-300" />
+              <Timer className="w-4 h-4 text-accent-400" />
               Duración estimada: 4–6 h
             </Pill>
           </div>

@@ -7,15 +7,13 @@ const EASE = [0.22, 1, 0.36, 1];
 
 export default function Navbar({
   brand = "Learning Roadmap",
-  links = [
-    { label: "Inicio", href: "#inicio" },
-    { label: "Roadmap", href: "#roadmap" },
-    { label: "Módulos", href: "#modulos" },
-  ],
   ctaLabel = "Comenzar",
-  onCtaClick,
 }) {
   const [open, setOpen] = useState(false);
+
+  const onCtaClick = () => {
+    document.getElementById("roadmap")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
