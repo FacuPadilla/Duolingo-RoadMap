@@ -1,5 +1,7 @@
 // src/components/steps/StepCSSAdvanced.jsx
 import { motion, useScroll, useTransform } from "framer-motion";
+import Lottie from "lottie-react";
+import step3Anim from "../assets/Step3.json";
 import {
   Star,
   CheckCircle2,
@@ -130,13 +132,16 @@ export default function StepCSSAdvanced({ step, index }) {
           transition={{ duration: 0.9, ease: EASE }}
           className="order-1 md:order-2"
         >
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-            <img
-              src="/covers/css-advanced.jpg"
-              alt="CSS Avanzado"
-              className="w-full h-full object-cover"
+          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden  ">
+            <Lottie
+              animationData={step3Anim}
+              loop
+              speed={0.5}
+              autoplay
+              aria-label="Animación CSS Advanced"
+              style={{ width: "100%", height: "100%" }}
+              rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
           </div>
         </motion.div>
 
@@ -167,7 +172,7 @@ export default function StepCSSAdvanced({ step, index }) {
             </span>
           </div>
 
-          <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white leading-tight">
+          <h2 className="mt-4 text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 text-transparent bg-clip-text">
             {title}
           </h2>
 

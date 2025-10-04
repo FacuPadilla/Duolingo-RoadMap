@@ -11,6 +11,8 @@ import {
   Code2,
   Braces,
 } from "lucide-react";
+import Lottie from "lottie-react";
+import step1Anim from "../assets/Step1.json";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -129,13 +131,15 @@ export default function StepHTML({ step, index }) {
           transition={{ duration: 0.9, ease: EASE }}
           className="order-1 md:order-2"
         >
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-            <img
-              src="/covers/html-cover.jpg"
-              alt="Fundamentos de HTML"
-              className="w-full h-full object-cover"
+          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden  ">
+            <Lottie
+              animationData={step1Anim}
+              loop
+              autoplay
+              style={{ width: "100%", height: "80%" }}
+              aria-label="Animación del módulo"
+              rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
           </div>
         </motion.div>
 
@@ -166,7 +170,7 @@ export default function StepHTML({ step, index }) {
             </span>
           </div>
 
-          <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white leading-tight">
+          <h2 className="mt-4 text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 text-transparent bg-clip-text">
             {title}
           </h2>
 

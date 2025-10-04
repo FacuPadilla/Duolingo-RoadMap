@@ -1,9 +1,8 @@
 // src/components/steps/StepCSSIntro.jsx
 import { motion, useScroll, useTransform } from "framer-motion";
+import Lottie from "lottie-react";
+import step2Anim from "../assets/Step2.json";
 import {
-  Palette,
-  Layers,
-  Pipette,
   Timer,
   BookOpenCheck,
   CheckCircle2,
@@ -101,30 +100,45 @@ export default function StepCSSIntro({ step, index }) {
   const { title, subtasks = [], status } = step;
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.03]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
   const completed = subtasks.filter((s) => s.status === "completed").length;
   const progress = Math.round((completed / Math.max(1, subtasks.length)) * 100);
   const mapByName = Object.fromEntries(subtasks.map((s) => [s.name, s]));
 
   return (
-    <section className="px-0 py-0">
+    <section className="relative px-0 py-0">
+      {/* Glow de fondo (igual que en StepCSSAdvanced) */}
+      <motion.div
+        style={{ y: parallaxY }}
+        className="pointer-events-none absolute inset-0 -z-10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1, ease: EASE }}
+      >
+        <div className="absolute -inset-20 blur-3xl bg-gradient-to-r from-primary-600/15 to-secondary-600/15" />
+      </motion.div>
+
       <div className="relative">
         <motion.div style={{ scale }} className="relative overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Visual */}
-            <div className="relative h-[60vh] md:h-[80vh] order-2 md:order-1">
-              <img
-                src="/covers/css-cover.jpg"
-                alt="CSS Intro"
-                className="w-full h-full object-cover"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-2">
+            {/* Visual: en mobile abajo, en desktop a la izquierda */}
+            <div className="relative h-[30vh] md:h-[75vh] order-2 md:order-1">
+              <Lottie
+                animationData={step2Anim}
+                loop
+                speed={0.5}
+                autoplay
+                aria-label="Animación CSS Intro"
+                style={{ width: "100%", height: "100%" }}
+                rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/10" />
             </div>
 
-            {/* Contenido */}
-            <div className="relative order-1 md:order-2 flex items-center">
+            {/* Contenido: en mobile arriba, en desktop a la derecha */}
+            <div className="relative order-2 md:order-2 flex items-center">
               <div className="px-6 sm:px-8 lg:px-12 py-14 sm:py-20 w-full">
-                {/* Meta header: Step + Estado + Progreso */}
                 <div className="flex flex-wrap items-center gap-3">
                   <Pill>Step {index + 1}</Pill>
                   <StatusPill status={status} />
@@ -142,7 +156,7 @@ export default function StepCSSIntro({ step, index }) {
                   </span>
                 </div>
 
-                <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white">
+                <h2 className="mt-4 text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 text-transparent bg-clip-text">
                   {title}
                 </h2>
 
@@ -155,7 +169,6 @@ export default function StepCSSIntro({ step, index }) {
                   confiables.
                 </p>
 
-                {/* Prerrequisito + Duración */}
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <Pill>
                     <BookOpenCheck className="w-4 h-4 text-primary-300" />
@@ -167,7 +180,6 @@ export default function StepCSSIntro({ step, index }) {
                   </Pill>
                 </div>
 
-                {/* Contenidos (subtasks) */}
                 <div className="mt-8">
                   <h4 className="text-white/90 font-semibold">
                     Contenidos del módulo
@@ -211,8 +223,8 @@ export default function StepCSSIntro({ step, index }) {
             </div>
           </div>
 
-          {/* Separador */}
-          <div className="h-12 sm:h-16 w-full bg-gradient-to-b from-transparent to-black/20" />
+          {/* Quitamos el separador que oscurecía el borde inferior */}
+          {/* <div className="h-12 sm:h-16 w-full bg-gradient-to-b from-transparent to-black/20" /> */}
         </motion.div>
       </div>
     </section>
