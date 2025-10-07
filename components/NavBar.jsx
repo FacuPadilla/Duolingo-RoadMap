@@ -13,29 +13,45 @@ export default function Navbar({
   const [heroInView, setHeroInView] = useState(true);
 
   useEffect(() => {
-    const hero = document.getElementById(heroId);
-    if (!hero) {
-      setHeroInView(false);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => setHeroInView(entry.isIntersecting),
-      { threshold: 0.55 }
-    );
-    io.observe(hero);
-    return () => io.disconnect();
+    // Esperamos un poco para asegurarnos que el DOM esté completamente cargado
+    const timer = setTimeout(() => {
+      const hero = document.getElementById(heroId);
+
+      if (!hero) {
+        console.warn(`Elemento con id "${heroId}" no encontrado`);
+        setHeroInView(false);
+        return;
+      }
+
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          setHeroInView(entry.isIntersecting);
+        },
+        {
+          threshold: 0.3, // Bajé el threshold para que sea más sensible
+          rootMargin: "-20px 0px 0px 0px", // Margen para activar un poco antes
+        }
+      );
+
+      io.observe(hero);
+
+      return () => io.disconnect();
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [heroId]);
 
   const onCtaClick = () => {
-    document
-      .getElementById(ctaTargetId)
-      ?.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById(ctaTargetId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* MOBILE: con efecto scroll */}
-      <nav className="md:hidden w-full border-white/10 bg-primary-900/20 backdrop-blur border-b  px-4 py-3">
+      <nav className="md:hidden w-full border-white/10 bg-primary-900/20 backdrop-blur border-b px-4 py-3">
         <div className="relative flex items-center justify-between">
           {/* Logo + Texto: centrado en hero, izquierda después del scroll */}
           <motion.a
@@ -60,11 +76,11 @@ export default function Navbar({
           <motion.button
             onClick={onCtaClick}
             aria-label={ctaLabel}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-500 hover:to-secondary-500 shadow-md shadow-primary-500/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 transition-all whitespace-nowrap"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-500 hover:to-secondary-500 shadow-md shadow-primary-500/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 transition-all whitespace-nowrap text-sm"
             initial={false}
             animate={{
               opacity: heroInView ? 0 : 1,
-              scale: heroInView ? 0.9 : 1,
+              scale: heroInView ? 0.95 : 1,
             }}
             style={{
               pointerEvents: heroInView ? "none" : "auto",
