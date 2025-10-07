@@ -10,6 +10,7 @@ export default function App() {
       <Navbar brand="Learning Roadmap" ctaLabel="Comenzar" />
       <main className="pt-28" id="inicio">
         <HeroSection />
+
         <section id="roadmap">
           <RoadmapSection />
         </section>

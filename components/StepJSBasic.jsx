@@ -1,103 +1,16 @@
 // src/components/StepJSBasicAligned.jsx
+
 import { useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Star,
-  CheckCircle2,
-  AlertCircle,
-  PauseCircle,
-  PlayCircle,
   Timer,
   BookOpenCheck,
   Braces,
   FunctionSquare,
   Repeat,
 } from "lucide-react";
-
-const EASE = [0.22, 1, 0.36, 1];
-
-const STATUS_STYLES = {
-  completed: {
-    text: "text-emerald-300",
-    bg: "bg-emerald-500/15",
-    border: "border-emerald-400/30",
-    icon: CheckCircle2,
-    label: "Completado",
-  },
-  in_progress: {
-    text: "text-sky-300",
-    bg: "bg-sky-500/15",
-    border: "border-sky-400/30",
-    icon: PlayCircle,
-    label: "En progreso",
-  },
-  review: {
-    text: "text-amber-300",
-    bg: "bg-amber-500/15",
-    border: "border-amber-400/30",
-    icon: AlertCircle,
-    label: "En revisión",
-  },
-  pending: {
-    text: "text-slate-300",
-    bg: "bg-slate-500/15",
-    border: "border-slate-400/30",
-    icon: PauseCircle,
-    label: "Pendiente",
-  },
-  blocked: {
-    text: "text-rose-300",
-    bg: "bg-rose-500/15",
-    border: "border-rose-400/30",
-    icon: AlertCircle,
-    label: "Bloqueado",
-  },
-};
-
-function Pill({ children, className = "" }) {
-  return (
-    <span
-      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/80 text-xs backdrop-blur ${className}`}
-    >
-      {children}
-    </span>
-  );
-}
-
-function StatusPill({ status }) {
-  const s = STATUS_STYLES[status] || STATUS_STYLES.pending;
-  const Icon = s.icon;
-  return (
-    <span
-      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border ${s.border} ${s.bg} ${s.text} text-xs font-medium`}
-    >
-      <Icon className="w-4 h-4" />
-      {s.label}
-      {status === "in_progress" && (
-        <span className="relative ml-1 inline-flex">
-          <span className="absolute inline-flex h-2 w-2 rounded-full bg-current opacity-75 animate-ping"></span>
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-current"></span>
-        </span>
-      )}
-    </span>
-  );
-}
-
-function SubtaskBadge({ st }) {
-  const s = STATUS_STYLES[st.status] || STATUS_STYLES.pending;
-  const Icon = s.icon;
-  return (
-    <div
-      className={`flex items-center gap-2 px-3 py-2 rounded-xl border ${s.border} ${s.bg}`}
-    >
-      <Icon className={`w-4 h-4 ${s.text}`} />
-      <span className="text-sm text-white/90">{st.name}</span>
-      <span className={`ml-auto text-[11px] font-medium ${s.text}`}>
-        {s.label}
-      </span>
-    </div>
-  );
-}
+import { Pill, StatusPill, SubtaskBadge, EASE, getProgress } from "./Commons";
 
 /** Visual: Code Preview animado */
 function TypingLine({ text, delay = 0, idx = 0 }) {
@@ -161,9 +74,7 @@ export default function StepJSBasicAligned({ step, index }) {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
-  const completed = subtasks.filter((s) => s.status === "completed").length;
-  const progress = Math.round((completed / Math.max(1, subtasks.length)) * 100);
-  const mapByName = Object.fromEntries(subtasks.map((s) => [s.name, s]));
+  const progress = getProgress(subtasks);
 
   return (
     <section className="relative px-6 sm:px-8 lg:px-12 py-14 sm:py-20">
@@ -234,33 +145,9 @@ export default function StepJSBasicAligned({ step, index }) {
               Contenidos del módulo
             </h4>
             <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <SubtaskBadge
-                st={
-                  mapByName["Variables y tipos"] || {
-                    name: "Variables y tipos",
-                    status: "pending",
-                    icon: Braces,
-                  }
-                }
-              />
-              <SubtaskBadge
-                st={
-                  mapByName["Funciones"] || {
-                    name: "Funciones",
-                    status: "pending",
-                    icon: FunctionSquare,
-                  }
-                }
-              />
-              <SubtaskBadge
-                st={
-                  mapByName["Bucles"] || {
-                    name: "Bucles",
-                    status: "pending",
-                    icon: Repeat,
-                  }
-                }
-              />
+              {subtasks.map((st, i) => (
+                <SubtaskBadge key={i} st={st} />
+              ))}
             </div>
           </div>
         </motion.div>

@@ -6,6 +6,9 @@ import StepHTML from "../components/StepHTML";
 import StepCSSIntro from "../components/StepCSSIntro";
 import StepJSBasic from "../components/StepJSBasic";
 import StepCSSAdvanced from "../components/StepCSSAdvanced";
+import StepJSIntermediate from "../components/StepJSIntermediate";
+import StepReact from "../components/StepReact";
+import StepFinalProject from "../components/StepFinalProject";
 
 function StepFallback({ step }) {
   return (
@@ -32,6 +35,9 @@ const componentRegistry = {
   2: StepCSSIntro,
   3: StepCSSAdvanced,
   4: StepJSBasic,
+  5: StepJSIntermediate,
+  6: StepReact,
+  7: StepFinalProject,
 };
 
 function resolveStepComponent(step) {

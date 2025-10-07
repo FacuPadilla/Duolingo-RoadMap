@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
+import TechSlider from "../components/TechSlider";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-x-hidden">
-      <div className="min-h-screen flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-10 sm:py-12">
+    <section id="hero" className="relative overflow-x-hidden ">
+      <div className="min-h-screen flex flex-col justify-center px-6 sm:px-8 lg:px-12  sm:py-12">
         <div className="container mx-auto max-w-7xl w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             {/* Imagen izquierda */}
@@ -123,7 +124,7 @@ const HeroSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.0, delay: 0.3 }}
-            className="mt-20 text-center flex flex-col items-center gap-4 mb-20 md:mb-2"
+            className="mt-40 text-center flex flex-col items-center gap-4 mb-20 md:mb-2"
           >
             <Star className="w-10 h-10 text-accent-400 mb-2" />
             <h2 className="text-2xl sm:text-3xl font-bold text-white">
@@ -136,6 +137,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+      <TechSlider />
     </section>
   );
 };
